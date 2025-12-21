@@ -107,8 +107,6 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-contrib-deduplicate \
     # --- Testing & Dev ---
     node-red-contrib-npmjs \
-    # --- Crypto ---
-    node-red-contrib-crypto \
     # --- Additional Popular ---
     node-red-contrib-image-tools \
     node-red-contrib-qrcode \
