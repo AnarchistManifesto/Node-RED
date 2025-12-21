@@ -85,7 +85,6 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-contrib-airtable \
     # --- Web scraping ---
     node-red-contrib-playwright \
-    node-red-contrib-puppeteer \
     # --- Advanced networking ---
     node-red-node-ping \
     node-red-node-snmp \
