@@ -3,7 +3,8 @@ FROM nodered/node-red:latest
 # Switch to root to install packages
 USER root
 
-# Install system dependencies for certain nodes
+# Install system dependencies
+# Added: chromium (for Puppeteer/Playwright), udev/ttf-freefont (for browser rendering)
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -12,7 +13,13 @@ RUN apk add --no-cache \
     gcc \
     libc-dev \
     linux-headers \
-    git
+    git \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
 
 # Switch back to node-red user
 USER node-red
@@ -20,70 +27,94 @@ USER node-red
 # Set working directory
 WORKDIR /usr/src/node-red
 
-# Install verified popular Node-RED contrib nodes (battle-tested list)
+# ENV for Puppeteer to find Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+# Install Node-RED contrib nodes
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
+    # --- Dashboard & UI ---
     @flowfuse/node-red-dashboard \
     node-red-contrib-uibuilder \
-    node-red-node-ui-table \
-    node-red-node-ui-list \
-    node-red-contrib-chartjs \
+    # --- Database nodes ---
     node-red-node-mysql \
+    node-red-contrib-postgresql \
     node-red-node-sqlite \
+    node-red-contrib-mongodb4 \
     node-red-contrib-influxdb \
     node-red-contrib-mssql-plus \
     node-red-contrib-stackhero-influxdb-v2 \
     node-red-contrib-stackhero-mysql \
+    # --- Messaging & Communication ---
     node-red-contrib-telegrambot \
     node-red-node-email \
     node-red-node-twilio \
     node-red-contrib-discord-advanced \
+    node-red-contrib-slack \
+    # --- Date/Time utilities ---
     node-red-contrib-moment \
     node-red-contrib-cron-plus \
-    node-red-contrib-string \
-    node-red-contrib-json \
-    node-red-contrib-http-request \
+    # --- Data manipulation ---
+    node-red-contrib-jsonata-extended \
+    # --- HTTP & Web ---
     node-red-contrib-web-worldmap \
+    # --- File operations & Cloud ---
     node-red-contrib-fs-ops \
     node-red-node-aws \
+    node-red-contrib-azure-iot-hub \
+    # --- IoT & Smart Home ---
     node-red-contrib-home-assistant-websocket \
     node-red-contrib-homebridge-automation \
     node-red-contrib-zigbee2mqtt \
     node-red-contrib-tasmota \
     node-red-contrib-shelly \
-    node-red-contrib-tuya-smart \
+    node-red-contrib-tuya-smart-device \
     node-red-contrib-sonos-plus \
+    # --- AI & Machine Learning ---
     node-red-contrib-openai \
-    node-red-contrib-chatgpt \
+    node-red-contrib-tensorflow \
+    # --- Automation & Workflow ---
     node-red-contrib-loop-processing \
     node-red-contrib-queue-gate \
     node-red-contrib-state-machine \
     node-red-contrib-flow-manager \
+    # --- Data visualization ---
     node-red-node-smooth \
+    # --- API integrations ---
     node-red-node-google \
     node-red-contrib-github \
-    node-red-contrib-trello \
     node-red-contrib-airtable \
+    # --- Web scraping ---
+    node-red-contrib-playwright \
     node-red-contrib-puppeteer \
+    # --- Advanced networking ---
     node-red-node-ping \
     node-red-node-snmp \
-    node-red-contrib-tcp-client \
+    # --- Security & Auth ---
     node-red-contrib-oauth2 \
     node-red-contrib-jwt \
     node-red-contrib-bcrypt \
+    # --- Monitoring ---
     node-red-contrib-logger \
+    node-red-contrib-prometheus-exporter \
+    # --- Context & Storage ---
+    node-red-contrib-context-nodes \
     node-red-contrib-redis \
+    # --- Utilities ---
     node-red-contrib-bigtimer \
     node-red-contrib-boolean-logic \
     node-red-contrib-counter \
-    node-red-contrib-filter \
-    node-red-contrib-crypto-js \
-    node-red-contrib-paypal \
+    node-red-contrib-deduplicate \
+    # --- Testing & Dev ---
+    node-red-contrib-npmjs \
+    # --- Crypto ---
+    node-red-contrib-crypto \
+    # --- Additional Popular ---
     node-red-contrib-image-tools \
     node-red-contrib-qrcode \
     node-red-contrib-advanced-ping \
     node-red-contrib-buffer-parser \
     node-red-contrib-calc \
-    node-red-contrib-file-function \
     node-red-contrib-schedex
 
 # Set environment variables
