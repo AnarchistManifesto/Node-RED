@@ -123,7 +123,7 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-contrib-buffer-parser \
     node-red-contrib-calc \
     node-red-contrib-file-function \
-    node-red-contrib-bandwidth \
+    node-red-contrib-fast-bandwidth \
     node-red-contrib-schedex
 
 # Set environment variables
