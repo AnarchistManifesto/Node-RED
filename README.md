@@ -2,7 +2,7 @@
 
 A comprehensive Node-RED deployment on Railway with 80+ popular contrib nodes pre-installed.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/XXXXX)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/new/template/node-red)
 
 ## What's Included
 
