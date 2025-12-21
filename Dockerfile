@@ -55,7 +55,6 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-contrib-moment \
     node-red-contrib-cron-plus \
     # --- Data manipulation ---
-    node-red-contrib-jsonata-extended \
     # --- HTTP & Web ---
     node-red-contrib-web-worldmap \
     # --- File operations & Cloud ---
