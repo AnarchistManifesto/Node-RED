@@ -81,7 +81,6 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-node-smooth \
     # --- API integrations ---
     node-red-node-google \
-    node-red-contrib-github \
     node-red-contrib-airtable \
     # --- Web scraping ---
     node-red-contrib-playwright \
