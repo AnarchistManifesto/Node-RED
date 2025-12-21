@@ -20,13 +20,15 @@ USER node-red
 # Set working directory
 WORKDIR /usr/src/node-red
 
-# Install ALL popular Node-RED contrib nodes
+# Install ALL popular Node-RED contrib nodes (verified to exist)
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     # Dashboard & UI
     @flowfuse/node-red-dashboard \
     node-red-contrib-uibuilder \
     node-red-node-ui-table \
     node-red-node-ui-list \
+    node-red-contrib-chartjs \
+    node-red-contrib-graphs \
     # Database nodes
     node-red-node-mysql \
     node-red-contrib-postgres \
@@ -41,7 +43,6 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-node-email \
     node-red-node-twilio \
     node-red-contrib-discord-advanced \
-    node-red-contrib-whatsapp-api \
     node-red-contrib-slack \
     # Date/Time utilities
     node-red-contrib-moment \
@@ -75,8 +76,7 @@ RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production \
     node-red-contrib-queue-gate \
     node-red-contrib-state-machine \
     node-red-contrib-flow-manager \
-    # Data visualization & Charts
-    node-red-contrib-charts \
+    # Data visualization
     node-red-node-smooth \
     # API integrations
     node-red-node-google \
