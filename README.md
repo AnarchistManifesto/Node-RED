@@ -165,11 +165,3 @@ Check the node's documentation on [flows.nodered.org](https://flows.nodered.org)
 ## Contributing
 
 Want to add more nodes to this template? Submit a PR!
-
-## License
-
-MIT
-
-## Credits
-
-Built for Railway community. Node-RED is an OpenJS Foundation project.
